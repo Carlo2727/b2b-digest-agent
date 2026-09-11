@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B2B Digest Agent | Intelligence Quotidiana su Bandi, Appalti e Agevolazioni</title>
+  <meta name="description" content="Non perdere mai più un bando o contributo a fondo perduto per la tua azienda. Monitoraggio autonomo con IA su Invitalia, Ministeri, ANCE e Gazzetta Ufficiale ogni mattina su Telegram ed Email.">
+  
+  <!-- OpenGraph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="B2B Digest — Bandi e Contributi a Fondo Perduto">
+  <meta property="og:description" content="Briefing quotidiano automatico delle opportunità reali per la tua impresa.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="B2B Digest — Bandi e Contributi a Fondo Perduto">
+  <meta name="twitter:description" content="Briefing quotidiano automatico delle opportunità reali per la tua impresa.">
+
+  <!-- Typography: Plus Jakarta Sans, Newsreader & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Critical Mobile Responsive Overrides -->
+  <style>
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden !important;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      /* 1. Risoluzione Disallineamento e Centratura */
+      .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 1.25rem !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
+      }
+
+      * {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .hero-section {
+        padding: 2rem 0 1.5rem 0 !important;
+        text-align: center !important;
+      }
+
+      .hero-badge {
+        margin: 0 auto 12px auto !important;
+        display: inline-flex !important;
+        font-size: 11.5px !important;
+        padding: 5px 12px !important;
+        text-align: center !important;
+      }
+
+      .hero-title {
+        font-size: clamp(1.75rem, 6vw, 2.2rem) !important;
+        line-height: 1.2 !important;
+        margin: 0 auto 12px auto !important;
+        text-align: center !important;
+        letter-spacing: -0.02em !important;
+      }
+
+      .hero-subtitle {
+        font-size: 14.5px !important;
+        line-height: 1.5 !important;
+        margin: 0 auto 18px auto !important;
+        text-align: center !important;
+        padding: 0 0.5rem !important;
+      }
+
+      .waitlist-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        padding: 1.25rem 1rem !important;
+        border-radius: 14px !important;
+        text-align: center !important;
+      }
+
+      .waitlist-header {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 8px !important;
+        margin-bottom: 14px !important;
+      }
+
+      .waitlist-deal {
+        font-size: 12px !important;
+        text-align: center !important;
+      }
+
+      .input-group {
+        flex-direction: column !important;
+        gap: 10px !important;
+        width: 100% !important;
+      }
+
+      .input-group input {
+        width: 100% !important;
+        font-size: 14px !important;
+        padding: 12px 14px !important;
+        text-align: center !important;
+      }
+
+      .input-group button,
+      .waitlist-form .btn-primary {
+        width: 100% !important;
+        padding: 13px 18px !important;
+        font-size: 14.5px !important;
+        justify-content: center !important;
+      }
+
+      .form-microcopy {
+        font-size: 11.5px !important;
+        margin-top: 10px !important;
+        text-align: center !important;
+      }
+
+      /* 2. Compressione Spazio Verticale (Paddings dimezzati a ~2-2.5rem) */
+      .preview-section {
+        padding: 2rem 0 2.25rem 0 !important;
+      }
+
+      .comparison-section {
+        padding: 2.25rem 0 !important;
+      }
+
+      .pricing-section {
+        padding: 2.25rem 0 !important;
+      }
+
+      .faq-section {
+        padding: 2rem 0 2.25rem 0 !important;
+      }
+
+      .final-cta-section {
+        padding: 1.5rem 0 2.25rem 0 !important;
+      }
+
+      .section-header {
+        margin-bottom: 18px !important;
+        padding: 0 0.5rem !important;
+      }
+
+      .section-tag {
+        font-size: 11px !important;
+        margin-bottom: 4px !important;
+      }
+
+      .section-title {
+        font-size: 1.45rem !important;
+        line-height: 1.25 !important;
+        margin-bottom: 8px !important;
+      }
+
+      .section-subtitle {
+        font-size: 13.5px !important;
+        line-height: 1.4 !important;
+      }
+
+      /* 3. Card Anteprima e Tabella Compatte */
+      .preview-tabs {
+        gap: 8px !important;
+        margin-bottom: 16px !important;
+      }
+
+      .tab-btn {
+        padding: 8px 14px !important;
+        font-size: 12px !important;
+      }
+
+      .preview-container {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+
+      .preview-card {
+        border-radius: 14px !important;
+      }
+
+      .tg-app-bar {
+        padding: 10px 14px !important;
+      }
+
+      .tg-bot-avatar {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 15px !important;
+      }
+
+      .tg-bot-name {
+        font-size: 13.5px !important;
+      }
+
+      .tg-bot-sub {
+        font-size: 11px !important;
+      }
+
+      .tg-message-bubble {
+        padding: 14px !important;
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+      }
+
+      .tg-title-bar {
+        font-size: 14px !important;
+      }
+
+      .tg-summary {
+        font-size: 12px !important;
+        margin: 6px 0 !important;
+      }
+
+      .tg-meta-tag {
+        font-size: 11.5px !important;
+      }
+
+      .tg-divider {
+        margin: 10px 0 !important;
+      }
+
+      .tg-item-headline {
+        font-size: 14px !important;
+        line-height: 1.3 !important;
+        margin-bottom: 6px !important;
+      }
+
+      .tg-tags-row {
+        gap: 6px !important;
+        margin-bottom: 10px !important;
+      }
+
+      .badge-chip {
+        font-size: 10px !important;
+        padding: 2px 6px !important;
+      }
+
+      .tg-grid-fields {
+        padding: 10px 12px !important;
+        gap: 6px !important;
+        margin-bottom: 12px !important;
+      }
+
+      .field-row {
+        font-size: 12px !important;
+        flex-wrap: wrap !important;
+        gap: 4px !important;
+      }
+
+      .field-val {
+        width: 100% !important;
+        display: block !important;
+      }
+
+      .tg-bullets {
+        margin-bottom: 12px !important;
+      }
+
+      .bullets-title {
+        font-size: 12px !important;
+        margin-bottom: 4px !important;
+      }
+
+      .tg-bullets ul {
+        padding-left: 12px !important;
+      }
+
+      .tg-bullets li {
+        font-size: 12px !important;
+        margin-bottom: 4px !important;
+      }
+
+      .tg-action-box {
+        padding: 8px 10px !important;
+        font-size: 12px !important;
+        margin-bottom: 12px !important;
+      }
+
+      .tg-btn-link {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 8px 12px !important;
+        font-size: 12px !important;
+      }
+
+      .tg-footer-stamp {
+        font-size: 10.5px !important;
+        margin-top: 10px !important;
+        padding-top: 8px !important;
+      }
+
+      .email-body {
+        padding: 14px !important;
+      }
+
+      .email-hero-header h3 {
+        font-size: 15px !important;
+      }
+
+      .email-item-card {
+        padding: 12px !important;
+      }
+
+      .email-item-title {
+        font-size: 14px !important;
+        margin-bottom: 8px !important;
+        line-height: 1.3 !important;
+      }
+
+      .email-data-table {
+        grid-template-columns: 1fr !important;
+        gap: 6px !important;
+        padding: 8px !important;
+        margin-bottom: 10px !important;
+      }
+
+      .comparison-grid {
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+      }
+
+      .compare-card {
+        padding: 18px 14px !important;
+        border-radius: 14px !important;
+      }
+
+      .pricing-card {
+        grid-template-columns: 1fr !important;
+        border-radius: 14px !important;
+      }
+
+      .pricing-left {
+        padding: 20px 14px !important;
+      }
+
+      .pricing-title {
+        font-size: 1.35rem !important;
+        line-height: 1.25 !important;
+        margin: 8px 0 6px 0 !important;
+      }
+
+      .pricing-right {
+        padding: 20px 14px !important;
+        border-left: none !important;
+        border-top: 1px solid var(--border-subtle) !important;
+      }
+
+      .amount {
+        font-size: 42px !important;
+      }
+
+      .faq-item {
+        padding: 12px 14px !important;
+      }
+
+      .cta-box {
+        padding: 24px 14px !important;
+        border-radius: 14px !important;
+      }
+
+      .cta-box h2 {
+        font-size: 1.35rem !important;
+      }
+
+      .cta-box .btn-lg {
+        width: 100% !important;
+        padding: 12px 18px !important;
+        font-size: 14px !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background decorative elements -->
+  <div class="glow-sphere glow-sphere-top" aria-hidden="true"></div>
+  <div class="glow-sphere glow-sphere-bottom" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <header class="navbar" id="top">
+    <div class="container nav-container">
+      <a href="#top" class="brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-text">b2b-digest<strong>agent</strong></span>
+      </a>
+      <div class="nav-actions">
+        <span class="status-indicator">
+          <span class="pulse-dot"></span>
+          <span>Feed Istituzionali Monitorati</span>
+        </span>
+        <a href="#iscriviti" class="btn btn-sm btn-ghost">Accedi alla Waitlist</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-badge">
+          <span class="badge-icon">✦</span>
+          <span>Intelligence Commerciale & PNRR per Imprese</span>
+        </div>
+
+        <h1 class="hero-title">
+          Non perdere mai più un bando o un contributo <span class="italic-serif">a fondo perduto</span> per la tua azienda.
+        </h1>
+
+        <p class="hero-subtitle">
+          Ogni mattina alle <strong>07:00</strong>, il nostro agente IA analizza centinaia di pagine della <strong>Gazzetta Ufficiale</strong>, <strong>Invitalia</strong>, <strong>ANCE</strong> e dei <strong>Ministeri</strong>. Filtra il rumore burocratico e ti consegna solo le opportunità reali pronte da cogliere, con importi, scadenze e target.
+        </p>
+
+        <!-- Waitlist Form (Hero) -->
+        <div class="waitlist-card" id="iscriviti">
+          <div class="waitlist-header">
+            <span class="badge badge-gold">Offerta Early Bird</span>
+            <p class="waitlist-deal"><strong>Accesso Anticipato Gratuito</strong> per i primi 50 iscritti (3 mesi inclusi, poi 9 €/mese disattivabili con 1 clic).</p>
+          </div>
+
+          <!--
+            =======================================================================
+            INTEGRAZIONE FORMSPREE / WEBHOOK:
+            Per inviare le email a Formspree o un webhook Make/Zapier, sostituisci
+            l'attributo action con il tuo endpoint (es. action="https://formspree.io/f/xyz...").
+            Attualmente il form include validazione JS e memorizzazione locale immediata.
+            =======================================================================
+          -->
+          <form class="waitlist-form" id="hero-waitlist-form" action="https://formspree.io/f/tuo_id" method="POST" onsubmit="handleWaitlistSubmit(event)">
+            <div class="input-group">
+              <input 
+                type="email" 
+                name="email" 
+                id="hero-email" 
+                placeholder="Inserisci la tua email aziendale..." 
+                required 
+                autocomplete="email"
+              />
+              <button type="submit" class="btn btn-primary">
+                <span>Richiedi Invito Anticipato</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+            <p class="form-microcopy">
+              🔒 Nessuno spam. Ricevi solo il digest giornaliero. Solo <strong>17 posti gratuiti rimanenti</strong>.
+            </p>
+          </form>
+          <div class="form-feedback hidden" id="hero-feedback"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LIVE PREVIEW SECTION (Show, Don't Tell) -->
+    <section class="preview-section" id="anteprima">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Show, Don't Tell</span>
+          <h2 class="section-title">Cosa ricevi davvero ogni mattina sul tuo telefono</h2>
+          <p class="section-subtitle">Niente saggi teorici o articoli di opinione. Solo schede azionabili in 30 secondi.</p>
+        </div>
+
+        <!-- View Switcher -->
+        <div class="preview-tabs">
+          <button class="tab-btn active" data-target="tab-telegram" id="btn-tab-telegram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            <span>Canale Telegram</span>
+          </button>
+          <button class="tab-btn" data-target="tab-email" id="btn-tab-email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <span>Executive Email</span>
+          </button>
+        </div>
+
+        <div class="preview-container">
+          
+          <!-- TELEGRAM MOCKUP -->
+          <div class="preview-card view-tab active" id="tab-telegram">
+            <div class="tg-app-bar">
+              <div class="tg-bot-avatar">⚡</div>
+              <div class="tg-bot-info">
+                <span class="tg-bot-name">B2B Digest Agent <span class="tg-badge">BOT</span></span>
+                <span class="tg-bot-sub">Briefing Mattutino Istituzionale &bull; Oggi, 07:02</span>
+              </div>
+            </div>
+
+            <div class="tg-message-bubble">
+              <div class="tg-header-block">
+                <span class="tg-title-bar">📊 <b>B2B DIGEST INTELLIGENCE — OGGI</b></span>
+                <p class="tg-summary"><i>"Rilevate opportunità strategiche nel comparto agevolazioni Invitalia per contrasto alla deindustrializzazione e nuova finanza per rilancio investimenti produttivi."</i></p>
+                <div class="tg-meta-tag">📌 <b>Opportunità verificate:</b> 3 attive</div>
+              </div>
+
+              <div class="tg-divider"></div>
+
+              <!-- Item Card -->
+              <div class="tg-item">
+                <div class="tg-item-headline">
+                  <b>1. Incentivo Invitalia: Fondo di contrasto alla deindustrializzazione 2026</b>
+                </div>
+                <div class="tg-tags-row">
+                  <span class="badge-chip chip-red">🔴 PRIORITÀ ALTA</span>
+                  <span class="badge-chip chip-gray">AGEVOLAZIONE FISCALE</span>
+                </div>
+
+                <div class="tg-grid-fields">
+                  <div class="field-row">
+                    <span class="field-icon">🏛</span>
+                    <span class="field-label">Ente erogatore:</span>
+                    <strong class="field-val">Invitalia / Ministero delle Imprese</strong>
+                  </div>
+                  <div class="field-row">
+                    <span class="field-icon">💰</span>
+                    <span class="field-label">Agevolazione / Importo:</span>
+                    <strong class="field-val highlight-gold">Contributi a fondo perduto & tasso agevolato</strong>
+                  </div>
+                  <div class="field-row">
+                    <span class="field-icon">⏰</span>
+                    <span class="field-label">Scadenza presentazione:</span>
+                    <strong class="field-val">A sportello telematico &bull; Dotazione 2026</strong>
+                  </div>
+                  <div class="field-row">
+                    <span class="field-icon">🎯</span>
+                    <span class="field-label">Target Imprese:</span>
+                    <span class="field-val">PMI manifatturiere, industriali e impiantistiche in aree di crisi</span>
+                  </div>
+                </div>
+
+                <div class="tg-bullets">
+                  <span class="bullets-title">📋 Punti chiave sintetizzati da Gemini Pro:</span>
+                  <ul>
+                    <li>Finanziamento a fondo perduto fino al 60% per macchinari 4.0 e impianti sostenibili.</li>
+                    <li>Procedura semplificata con istruttoria accelerata entro 45 giorni lavorativi.</li>
+                    <li>Compatibile con altri crediti d'imposta per la transizione digitale.</li>
+                  </ul>
+                </div>
+
+                <div class="tg-action-box">
+                  <span class="action-icon">⚡</span>
+                  <div>
+                    <strong>Azione consigliata:</strong>
+                    <span>Verificare il codice ATECO aziendale e prenotare la scheda tecnica su Invitalia prima dell'apertura dello sportello.</span>
+                  </div>
+                </div>
+
+                <div class="tg-link-action">
+                  <a href="https://www.invitalia.it/per-le-imprese/incentivi-e-strumenti" target="_blank" rel="noopener noreferrer" class="tg-btn-link">
+                    <span>🔗 Apri Scheda Ufficiale del Bando</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  </a>
+                </div>
+              </div>
+
+              <div class="tg-footer-stamp">
+                🤖 <i>Elaborato automaticamente da B2B Digest Agent con Google Gemini Pro &bull; 07:00 CET</i>
+              </div>
+            </div>
+          </div>
+
+          <!-- EMAIL MOCKUP -->
+          <div class="preview-card view-tab" id="tab-email">
+            <div class="email-mock-bar">
+              <div class="email-circle circle-red"></div>
+              <div class="email-circle circle-yellow"></div>
+              <div class="email-circle circle-green"></div>
+              <span class="email-subject-preview">Da: B2B Digest &lt;intelligence@b2bdigest.it&gt; &bull; Oggetto: 📊 B2B Digest — Invitalia, ANCE e Gare Pubbliche</span>
+            </div>
+
+            <div class="email-body">
+              <div class="email-hero-header">
+                <h3>📊 B2B Digest Intelligence</h3>
+                <span class="email-date-badge">Briefing Esecutivo &bull; Invitalia & Grandi Appalti</span>
+              </div>
+              <p class="email-intro">
+                Ecco le opportunità a maggiore impatto economico pubblicate nelle ultime 24 ore e validate dai nostri filtri di conformità.
+              </p>
+
+              <div class="email-item-card">
+                <div class="email-item-top">
+                  <span class="chip-priority-high">ALTA RILEVANZA</span>
+                  <span class="chip-cat">INCENTIVI & INVESTIMENTI</span>
+                </div>
+                <h4 class="email-item-title">Bando PNRR & Transizione 5.0 — Agevolazioni Fiscali fino al 45%</h4>
+                <div class="email-data-table">
+                  <div class="data-col">
+                    <span class="lbl">Dotazione Complessiva</span>
+                    <span class="val">€ 6.300.000.000</span>
+                  </div>
+                  <div class="data-col">
+                    <span class="lbl">Scadenza</span>
+                    <span class="val">30 Novembre 2026</span>
+                  </div>
+                  <div class="data-col">
+                    <span class="lbl">Ente Gestore</span>
+                    <span class="val">MIMIT / GSE</span>
+                  </div>
+                </div>
+                <p class="email-desc">
+                  Credito d'imposta per acquisto beni strumentali 4.0, impianti fotovoltaici per autoconsumo industriale e formazione del personale. Accesso a sportello telematico continuo.
+                </p>
+                <a href="#iscriviti" class="email-cta-btn">Leggi Scheda Bando & Capitolato &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARISON SECTION: Il vecchio modo vs B2B Digest -->
+    <section class="comparison-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Efficienza Senza Pari</span>
+          <h2 class="section-title">Perché spulciare la Gazzetta Ufficiale non ha più senso</h2>
+          <p class="section-subtitle">Il tempo del tuo management vale troppo per perdersi in testi burocratici da 80 pagine.</p>
+        </div>
+
+        <div class="comparison-grid">
+          <div class="compare-card compare-old">
+            <div class="compare-head">
+              <span class="cross-icon">✕</span>
+              <h3>Il Vecchio Modo</h3>
+            </div>
+            <ul class="compare-list">
+              <li>
+                <strong>2-3 ore a settimana</strong> perse a scorrere portali lenti e poco indicizzati (Gazzetta, Invitalia, Regioni).
+              </li>
+              <li>
+                <strong>Consulenti da 1.500 €/mese</strong> che spesso inoltrano bandi già scaduti o non compatibili.
+              </li>
+              <li>
+                <strong>Burocrazia incomprensibile:</strong> decreti da 100 articoli per scoprire solo alla fine che il tuo ATECO è escluso.
+              </li>
+              <li>
+                <strong>Scadenze mancate:</strong> scopri il bando quando mancano 48 ore alla chiusura dei termini.
+              </li>
+            </ul>
+          </div>
+
+          <div class="compare-card compare-new">
+            <div class="compare-badge">Soluzione Intelligente</div>
+            <div class="compare-head">
+              <span class="check-icon">✓</span>
+              <h3>Con B2B Digest Agent</h3>
+            </div>
+            <ul class="compare-list">
+              <li>
+                <strong>60 secondi di lettura</strong> ogni mattina direttamente su Telegram o nella tua casella email.
+              </li>
+              <li>
+                <strong>Filtro IA con Gemini Pro:</strong> zero articoli di opinione o convegni, solo opportunità di cassa reali.
+              </li>
+              <li>
+                <strong>Schede immediate:</strong> requisiti, percentuale a fondo perduto, budget e azione consigliata in 3 punti.
+              </li>
+              <li>
+                <strong>Solo 9 €/mese</strong> (gratuito per i primi 50 iscritti in fase di prelancio).
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING & OFFER -->
+    <section class="pricing-section">
+      <div class="container">
+        <div class="pricing-card">
+          <div class="pricing-left">
+            <span class="badge badge-gold">Offerta Lancio Fondatori</span>
+            <h2 class="pricing-title">Un piano unico, semplice, accessibile a qualunque impresa</h2>
+            <p class="pricing-desc">
+              Monitorare bandi e appalti non deve costare quanto uno stipendio. Con una frazione del costo di un caffè a settimana, ricevi intelligence commerciale prima della concorrenza.
+            </p>
+
+            <ul class="pricing-perks">
+              <li><span class="perk-check">✓</span> Scansione quotidiana di Gazzetta Contratti (5S), Invitalia, ANCE e Sole 24 Ore</li>
+              <li><span class="perk-check">✓</span> Sintesi strutturata IA con importi esatti, scadenze e target ammissibili</li>
+              <li><span class="perk-check">✓</span> Consegna mattutina su canale Telegram privato o Newsletter Email</li>
+              <li><span class="perk-check">✓</span> Accesso garantito a tutte le nuove fonti e portali regionali futuri</li>
+              <li><span class="perk-check">✓</span> Nessun vincolo contrattuale, cancellazione autonoma in 1 clic</li>
+            </ul>
+          </div>
+
+          <div class="pricing-right">
+            <div class="price-box">
+              <span class="early-badge">Early Access Pass</span>
+              <div class="price-figures">
+                <span class="currency">€</span>
+                <span class="amount">0</span>
+                <span class="period">/ primi 3 mesi</span>
+              </div>
+              <span class="sub-price">poi 9 €/mese con rinnovo facoltativo</span>
+
+              <div class="spots-counter">
+                <div class="spots-bar">
+                  <div class="spots-fill" style="width: 66%;"></div>
+                </div>
+                <span class="spots-text"><strong>33 di 50</strong> posti promozionali già assegnati</span>
+              </div>
+
+              <a href="#iscriviti" class="btn btn-primary btn-block">
+                <span>Blocca l'Accesso Gratuito</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+
+              <span class="guarantee-text">🔒 Garanzia Zero Rischio: nessuna carta di credito richiesta per la waitlist.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="faq-section">
+      <div class="container faq-container">
+        <div class="section-header">
+          <span class="section-tag">Domande Frequenti</span>
+          <h2 class="section-title">Tutto quello che ti serve sapere</h2>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary class="faq-question">
+              <span>Quali fonti istituzionali vengono monitorate ogni mattina?</span>
+              <span class="faq-arrow">+</span>
+            </summary>
+            <div class="faq-answer">
+              Il sistema scansiona la Gazzetta Ufficiale (Serie Contratti Pubblici 5S), il portale incentivi di Invitalia (Smart&Start, Contratti di Sviluppo, Transizione), le gare ANCE per edilizia e infrastrutture, i bandi per PMI e i decreti attuativi del Sole 24 Ore Norme & Tributi.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Come fa l'IA a garantire che le informazioni siano affidabili?</span>
+              <span class="faq-arrow">+</span>
+            </summary>
+            <div class="faq-answer">
+              Utilizziamo Google Gemini con uno schema rigoroso Pydantic. Gemini non 'inventa' contenuti: il suo prompt è istruito per scartare recensioni e opinioni e limitarsi a estrarre esclusivamente cifre, requisiti ammissibili, scadenze e link ufficiali presenti nel testo primario dell'ente.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Come riceverò gli aggiornamenti?</span>
+              <span class="faq-arrow">+</span>
+            </summary>
+            <div class="faq-answer">
+              Potrai scegliere liberamente tra un canale Telegram privato (ideale per una rapida consultazione da smartphone prima di iniziare a lavorare) o un'email mattutina in formato HTML pulito e sintetico.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Cosa succede dopo i primi 3 mesi gratuiti?</span>
+              <span class="faq-arrow">+</span>
+            </summary>
+            <div class="faq-answer">
+              I primi 50 iscritti alla waitlist beneficiano di 3 mesi completi gratuiti. Al termine, se il servizio ti avrà fatto risparmiare tempo e intercettare opportunità, potrai scegliere se proseguire per 9 €/mese oppure cancellarti istantaneamente con un solo clic.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <h2>Pronto a fare un salto di qualità nel procurement e nei bandi?</h2>
+          <p>Unisciti agli imprenditori, direttori commerciali e professionisti che ricevono l'intelligence B2B prima degli altri.</p>
+          <a href="#iscriviti" class="btn btn-primary btn-lg">
+            <span>Richiedi il tuo invito anticipato &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <span class="brand-icon">⚡</span>
+        <span>b2b-digest-agent &bull; Automated B2B Procurement Intelligence</span>
+      </div>
+      <p class="footer-copy">
+        &copy; 2026 b2b-digest-agent. Tutti i diritti riservati. Progettato con Python, Google Gemini e GitHub Actions.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    function handleWaitlistSubmit(event) {
+      const form = event.target;
+      const action = form.getAttribute('action') || '';
+      if (action === '#' || action.includes('tuo_id') || action.includes('your_id')) {
+        event.preventDefault();
+        const emailInput = document.getElementById('hero-email');
+        const feedback = document.getElementById('hero-feedback');
+        if (!emailInput || !feedback) return;
+        const email = emailInput.value.trim();
+        if (!email || !email.includes('@')) {
+          feedback.textContent = 'Inserisci un indirizzo email valido.';
+          feedback.className = 'form-feedback error';
+          feedback.classList.remove('hidden');
+          return;
+        }
+        feedback.textContent = '🎉 Complimenti! Ti sei unito alla lista prioritaria. Riceverai a breve un\'email di conferma con l\'accesso gratuito al primo briefing.';
+        feedback.className = 'form-feedback success';
+        feedback.classList.remove('hidden');
+        emailInput.disabled = true;
+        const btn = form.querySelector('button[type="submit"]');
+        if (btn) {
+          btn.disabled = true;
+          btn.innerHTML = '<span>Iscritto con Successo ✓</span>';
+        }
+      }
+    }
+  </script>
+  <!-- Script logic for tabs & simulated submission -->
+  <script src="app.js"></script>
+</body>
+</html>
