@@ -433,7 +433,7 @@
             Attualmente il form include validazione JS e memorizzazione locale immediata.
             =======================================================================
           -->
-          <form class="waitlist-form" id="hero-waitlist-form" action="https://formspree.io/f/tuo_id" method="POST" onsubmit="handleWaitlistSubmit(event)">
+          <form class="waitlist-form" id="hero-waitlist-form" action="https://formspree.io/f/myeyvogn" method="POST" onsubmit="handleWaitlistSubmit(event)">
             <div class="input-group">
               <input 
                 type="email" 
@@ -799,30 +799,82 @@
   </footer>
 
   <script>
-    function handleWaitlistSubmit(event) {
+    async function handleWaitlistSubmit(event) {
+      event.preventDefault();
       const form = event.target;
+      const emailInput = document.getElementById('hero-email');
+      const feedback = document.getElementById('hero-feedback');
+      const submitBtn = form.querySelector('button[type="submit"]');
+      if (!emailInput || !feedback) return;
+
+      const email = emailInput.value.trim();
+      if (!email || !email.includes('@')) {
+        feedback.textContent = 'Inserisci un indirizzo email valido.';
+        feedback.className = 'form-feedback error';
+        feedback.classList.remove('hidden');
+        return;
+      }
+
+      // Save local backup copy in localStorage
+      try {
+        const leads = JSON.parse(localStorage.getItem('b2b_waitlist_leads') || '[]');
+        leads.push({ email, registered_at: new Date().toISOString() });
+        localStorage.setItem('b2b_waitlist_leads', JSON.stringify(leads));
+      } catch (e) {}
+
+      // Loading state
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>Invio in corso...</span>';
+      }
+
       const action = form.getAttribute('action') || '';
-      if (action === '#' || action.includes('tuo_id') || action.includes('your_id')) {
-        event.preventDefault();
-        const emailInput = document.getElementById('hero-email');
-        const feedback = document.getElementById('hero-feedback');
-        if (!emailInput || !feedback) return;
-        const email = emailInput.value.trim();
-        if (!email || !email.includes('@')) {
-          feedback.textContent = 'Inserisci un indirizzo email valido.';
-          feedback.className = 'form-feedback error';
-          feedback.classList.remove('hidden');
+      if (action.includes('formspree.io')) {
+        try {
+          const response = await fetch(action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (response.ok) {
+            feedback.textContent = '🎉 Complimenti! Ti sei unito alla lista prioritaria. Riceverai a breve una mail con l\'accesso gratuito al primo briefing.';
+            feedback.className = 'form-feedback success';
+            feedback.classList.remove('hidden');
+            emailInput.disabled = true;
+            if (submitBtn) {
+              submitBtn.disabled = true;
+              submitBtn.innerHTML = '<span>Iscritto con Successo ✓</span>';
+            }
+            return;
+          } else {
+            const data = await response.json();
+            feedback.textContent = (data && data.errors && data.errors[0] && data.errors[0].message) 
+              ? data.errors[0].message 
+              : 'Si è verificato un errore durante l\'invio. Riprova.';
+            feedback.className = 'form-feedback error';
+            feedback.classList.remove('hidden');
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = '<span>Richiedi Invito Anticipato</span>';
+            }
+            return;
+          }
+        } catch (err) {
+          // Fallback to standard POST in case of strict network block
+          form.submit();
           return;
         }
-        feedback.textContent = '🎉 Complimenti! Ti sei unito alla lista prioritaria. Riceverai a breve un\'email di conferma con l\'accesso gratuito al primo briefing.';
-        feedback.className = 'form-feedback success';
-        feedback.classList.remove('hidden');
-        emailInput.disabled = true;
-        const btn = form.querySelector('button[type="submit"]');
-        if (btn) {
-          btn.disabled = true;
-          btn.innerHTML = '<span>Iscritto con Successo ✓</span>';
-        }
+      }
+
+      // Local state fallback
+      feedback.textContent = '🎉 Complimenti! Ti sei unito alla lista prioritaria. Riceverai a breve una mail con l\'accesso gratuito al primo briefing.';
+      feedback.className = 'form-feedback success';
+      feedback.classList.remove('hidden');
+      emailInput.disabled = true;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>Iscritto con Successo ✓</span>';
       }
     }
   </script>
