@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "b2b-digest-agent"
+version = "0.1.0"
+description = "Automated B2B digest agent for public tenders, procurement notices, and regulatory updates using Google Gemini Pro."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "B2B Digest Team" }
+]
+dependencies = [
+    "google-genai>=1.0.0",
+    "pydantic>=2.7.0",
+    "requests>=2.31.0",
+    "beautifulsoup4>=4.12.0",
+    "python-dotenv>=1.0.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-mock>=3.12.0"
+]
+
+[project.scripts]
+b2b-digest = "b2b_digest.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

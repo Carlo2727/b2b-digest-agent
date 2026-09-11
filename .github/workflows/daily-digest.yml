@@ -1,0 +1,62 @@
+name: Daily B2B Digest Agent
+
+on:
+  schedule:
+    # Runs every weekday (Mon-Fri) at 07:00 UTC (approx. 08:00/09:00 CET/CEST)
+    - cron: '0 7 * * 1-5'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions UI
+
+permissions:
+  contents: write
+
+jobs:
+  run-digest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run B2B Digest Agent
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-1.5-pro' }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_ENABLED: ${{ vars.TELEGRAM_ENABLED || 'true' }}
+          SMTP_ENABLED: ${{ vars.SMTP_ENABLED || 'false' }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_FROM_EMAIL: ${{ secrets.SMTP_FROM_EMAIL }}
+          SMTP_TO_EMAIL: ${{ secrets.SMTP_TO_EMAIL }}
+          PYTHONPATH: src
+        run: |
+          python -m b2b_digest.main
+
+      - name: Commit and push updated seen_ids.json
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          if [ -f seen_ids.json ] && ! git diff --quiet seen_ids.json; then
+            echo "Changes detected in seen_ids.json. Committing and pushing..."
+            git add seen_ids.json
+            git commit -m "chore(digest): update seen_ids.json [skip ci]"
+            git push
+          else
+            echo "No changes in seen_ids.json to commit."
+          fi
