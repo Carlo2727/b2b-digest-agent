@@ -38,12 +38,12 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           TELEGRAM_ENABLED: ${{ secrets.TELEGRAM_ENABLED || vars.TELEGRAM_ENABLED || 'true' }}
           SMTP_ENABLED: ${{ vars.SMTP_ENABLED || 'false' }}
-          SMTP_HOST: ${{ secrets.SMTP_HOST }}
-          SMTP_PORT: ${{ secrets.SMTP_PORT }}
-          SMTP_USER: ${{ secrets.SMTP_USER }}
-          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-          SMTP_FROM_EMAIL: ${{ secrets.SMTP_FROM_EMAIL }}
-          SMTP_TO_EMAIL: ${{ secrets.SMTP_TO_EMAIL }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST || '' }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT || '587' }}
+          SMTP_USER: ${{ secrets.SMTP_USER || '' }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD || '' }}
+          SMTP_FROM_EMAIL: ${{ secrets.SMTP_FROM_EMAIL || '' }}
+          SMTP_TO_EMAIL: ${{ secrets.SMTP_TO_EMAIL || '' }}
           PYTHONPATH: src
         run: |
           python -m b2b_digest.main

@@ -12,32 +12,41 @@ DEFAULT_USER_AGENT = (
     "Chrome/128.0.0.0 Safari/537.36"
 )
 
+def _get_int(var_name: str, default: int) -> int:
+    val = os.getenv(var_name)
+    if not val or not val.strip():
+        return default
+    try:
+        return int(val.strip())
+    except ValueError:
+        return default
+
 class Config:
     """Central configuration class for b2b-digest-agent."""
 
     # Gemini settings
-    GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
-    GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+    GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "").strip()
+    GEMINI_MODEL: str = (os.getenv("GEMINI_MODEL") or "gemini-2.5-flash").strip()
 
     # Telegram settings
-    TELEGRAM_ENABLED: bool = os.getenv("TELEGRAM_ENABLED", "true").lower() in ("true", "1", "yes")
-    TELEGRAM_BOT_TOKEN: str = os.getenv("TELEGRAM_BOT_TOKEN", "")
-    TELEGRAM_CHAT_ID: str = os.getenv("TELEGRAM_CHAT_ID", "")
+    TELEGRAM_ENABLED: bool = (os.getenv("TELEGRAM_ENABLED") or "true").strip().lower() in ("true", "1", "yes")
+    TELEGRAM_BOT_TOKEN: str = os.getenv("TELEGRAM_BOT_TOKEN", "").strip()
+    TELEGRAM_CHAT_ID: str = os.getenv("TELEGRAM_CHAT_ID", "").strip()
 
     # Email / SMTP settings
-    SMTP_ENABLED: bool = os.getenv("SMTP_ENABLED", "false").lower() in ("true", "1", "yes")
-    SMTP_HOST: str = os.getenv("SMTP_HOST", "")
-    SMTP_PORT: int = int(os.getenv("SMTP_PORT", "587"))
-    SMTP_USER: str = os.getenv("SMTP_USER", "")
-    SMTP_PASSWORD: str = os.getenv("SMTP_PASSWORD", "")
-    SMTP_FROM_EMAIL: str = os.getenv("SMTP_FROM_EMAIL", "")
-    SMTP_TO_EMAIL: str = os.getenv("SMTP_TO_EMAIL", "")
+    SMTP_ENABLED: bool = (os.getenv("SMTP_ENABLED") or "false").strip().lower() in ("true", "1", "yes")
+    SMTP_HOST: str = os.getenv("SMTP_HOST", "").strip()
+    SMTP_PORT: int = _get_int("SMTP_PORT", 587)
+    SMTP_USER: str = os.getenv("SMTP_USER", "").strip()
+    SMTP_PASSWORD: str = os.getenv("SMTP_PASSWORD", "").strip()
+    SMTP_FROM_EMAIL: str = os.getenv("SMTP_FROM_EMAIL", "").strip()
+    SMTP_TO_EMAIL: str = os.getenv("SMTP_TO_EMAIL", "").strip()
 
     # Scraper and general settings
-    USER_AGENT: str = os.getenv("USER_AGENT", DEFAULT_USER_AGENT)
-    MAX_ITEMS_PER_RUN: int = int(os.getenv("MAX_ITEMS_PER_RUN", "15"))
-    TIMEOUT_SECONDS: int = int(os.getenv("TIMEOUT_SECONDS", "30"))
-    SEEN_IDS_FILE: Path = Path(os.getenv("SEEN_IDS_FILE", "seen_ids.json"))
+    USER_AGENT: str = os.getenv("USER_AGENT") or DEFAULT_USER_AGENT
+    MAX_ITEMS_PER_RUN: int = _get_int("MAX_ITEMS_PER_RUN", 15)
+    TIMEOUT_SECONDS: int = _get_int("TIMEOUT_SECONDS", 30)
+    SEEN_IDS_FILE: Path = Path(os.getenv("SEEN_IDS_FILE") or "seen_ids.json")
 
     @classmethod
     def validate_runtime(cls, dry_run: bool = False) -> None:
