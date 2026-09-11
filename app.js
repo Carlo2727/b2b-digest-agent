@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const feedback = document.getElementById("hero-feedback");
 
   if (form) {
+    form.addEventListener("submit", (e) => {
       const actionUrl = form.getAttribute("action") || "";
       const isPlaceholder = actionUrl === "#" || actionUrl.includes("tuo_id") || actionUrl.includes("your_id");
 
