@@ -111,12 +111,13 @@ class GeminiDigestAnalyzer:
 
         except ImportError:
             logger.warning(
-                "google-genai SDK not installed or failed to import. Falling back to google-generativeai or mock parser."
+                "google-genai SDK not installed or failed to import. Falling back to secondary parser."
             )
             return self._fallback_analyze(prompt, raw_items)
         except Exception as e:
-            logger.error("Gemini API call failed: %s", e)
-            raise
+            logger.warning("Gemini API call failed (%s). Falling back to secondary/local analyzer...", e)
+            return self._fallback_analyze(prompt, raw_items)
+
 
     def _fallback_analyze(self, prompt: str, raw_items: List[RawItem]) -> DailyDigest:
         """Secondary fallback using google-generativeai SDK if installed."""

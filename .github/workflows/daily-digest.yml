@@ -33,10 +33,10 @@ jobs:
       - name: Run B2B Digest Agent
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-1.5-pro' }}
+          GEMINI_MODEL: ${{ secrets.GEMINI_MODEL || vars.GEMINI_MODEL || 'gemini-2.5-flash' }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          TELEGRAM_ENABLED: ${{ vars.TELEGRAM_ENABLED || 'true' }}
+          TELEGRAM_ENABLED: ${{ secrets.TELEGRAM_ENABLED || vars.TELEGRAM_ENABLED || 'true' }}
           SMTP_ENABLED: ${{ vars.SMTP_ENABLED || 'false' }}
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}

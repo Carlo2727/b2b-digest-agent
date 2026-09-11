@@ -123,9 +123,10 @@ def run_pipeline(
 
     # 6. Update seen_ids.json so items are not sent again tomorrow
     if dispatched_any or not (Config.TELEGRAM_ENABLED or Config.SMTP_ENABLED):
-        processed_ids = [item.id for item in target_items]
+        processed_ids = [item.id for item in raw_items]
         storage.mark_seen(processed_ids)
         logger.info("Marked %d items as seen in %s", len(processed_ids), Config.SEEN_IDS_FILE)
+
 
     logger.info("Pipeline execution successfully finished.")
     return 0
